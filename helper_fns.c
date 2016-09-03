@@ -25,7 +25,7 @@
 
 		while(parsecmd != NULL)	{
 			cmd_array[array_size++] = parsecmd;
-	//		printf("arraysize %d and val %s\n", array_size, parsecmd);
+			printf("arraysize %d and val %s\n", array_size, parsecmd);
 			if ( (strcmp(parsecmd,">") == 0) ||  (strcmp(parsecmd, "<") == 0) ){	
 				redirect_idx[(*redirect_cnt)] = array_size-1;	
 				(*redirect_cnt)++;}
@@ -44,7 +44,7 @@
 	//started commenting out here	
 		//printf("new pipe count is %d and new redirect count is %d\n", *pipe_cnt, *redirect_cnt);
 		//printf("cmd---------->%d\n",*cmd);
-		
+		printf("in route cmd_array[0] passed is %s\n", cmd_array[0]);
 		if ( ((cmd_array[0][0]) == '!') || (strcmp(cmd_array[0], "hist") == 0) ){	
 			*cmd = hist_cmd;
 			return 1;}

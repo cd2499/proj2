@@ -48,7 +48,7 @@
          		is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
         
 			if (is_internal)
-				exec_internal(cmd, hist_cnt, cmd_array); 
+				exec_internal(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx); 
 			else
 				printf("looks like its external\n");
          		
