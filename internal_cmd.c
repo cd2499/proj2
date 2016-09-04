@@ -1,6 +1,7 @@
 	#include "./cmd_type.h"
+	#include "./internal_cmd.h"
+	#include "./process_cmd.h"
 
-	void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);	
 	void executeHistory(int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx){
 		register HIST_ENTRY ** the_list = history_list();		
 		cmd_type cmd_val = hist_cmd;

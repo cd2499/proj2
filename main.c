@@ -14,8 +14,8 @@
 	#include <sys/stat.h>
 	#include <fcntl.h>
 	#include "./cmd_type.h"
-	#include "./helper_fns.c"
-	#include "./internal_cmd.c"
+	#include "./process_cmd.h"
+	#include "./internal_cmd.h"
 	
 	
 	int main(){
@@ -46,18 +46,17 @@
          		add_history(user_cmd);  
 		     	array_size = parseCommand(user_cmd, cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
          		is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
-        
-			if (is_internal)
-				exec_internal(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx); 
-			else
-				printf("looks like its external\n");
+       			parseCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal); 
+			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal); 
          		
 			printf("cmd----->%d\n", *cmd);
 			free(user_cmd);		
-        		*pipe_cnt = 0;
+        		
+			*pipe_cnt = 0;
 			*redirect_cnt = 0;
 			*redirect_idx = 0; 
-         		getShellPrompt(shellprompt,++hist_cnt);}
+         		
+			getShellPrompt(shellprompt,++hist_cnt);}
 
 		return 0;}
 	
