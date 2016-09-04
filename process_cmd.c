@@ -1,6 +1,8 @@
 	#include <stdio.h>
 	#include <unistd.h>
 	#include "./cmd_type.h"	
+	#include "./process_cmd.h"
+	#include "./internal_cmd.h"
 
 	void getShellPrompt(char * shellprompt, int hist_cnt){
 		char *user;
@@ -95,3 +97,9 @@
 		return 0;	
 		memset(cmd_array, 0, sizeof (*cmd_array));
 		}
+
+	void processCommand(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int is_internal){
+		if (is_internal)
+			exec_internal(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx); 
+		else
+			printf("looks like its external\n");}
