@@ -44,9 +44,11 @@
          
         	while ((user_cmd = readline(shellprompt))) {
          		add_history(user_cmd);  
-		     	array_size = parseCommand(user_cmd, cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
-         		is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
-       			parseCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal); 
+		     	
+			array_size = parseCommand(user_cmd, cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
+         		
+			is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
+			
 			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal); 
          		
 			printf("cmd----->%d\n", *cmd);

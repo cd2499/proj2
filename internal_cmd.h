@@ -2,7 +2,9 @@
 #define INT_CMD_H_
 
 	#include "./cmd_type.h"
-
+	#include "./process_cmd.h"
+	#include <readline/readline.h>
+	#include <readline/history.h>
 
 	void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);	
 

@@ -2,7 +2,7 @@
 	#include <unistd.h>
 	#include "./cmd_type.h"	
 	#include "./process_cmd.h"
-	#include "./internal_cmd.c"
+	#include "./internal_cmd.h"
 
 	void getShellPrompt(char * shellprompt, int hist_cnt){
 		char *user;

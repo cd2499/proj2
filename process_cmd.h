@@ -2,9 +2,11 @@
 #define PRCSS_CMD_H_
 	
 	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
 	#include <unistd.h>
 	#include "./cmd_type.h"	
-	#include "./internal_cmd.c"
+	#include "./internal_cmd.h"
 
 	void getShellPrompt(char * shellprompt, int hist_cnt);
 
