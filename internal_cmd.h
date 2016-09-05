@@ -6,11 +6,12 @@
 	#include <readline/readline.h>
 	#include <readline/history.h>
 
-	void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);	
+	void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int array_size);	
 
-	void executeHistory(int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);
+	void executeHistory(int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int array_size);
 
-	void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);	
+	void executeDirectory(cmd_type * cmd, char ** cmd_array, int array_size);
+	//void exec_internal(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx);	
 		
 
 #endif //INT_CMD_H_
