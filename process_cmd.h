@@ -14,6 +14,6 @@
 	
 	int routeCommand(char ** cmd_array, int array_size, int hist_cnt, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, cmd_type * cmd);
 
-	void processCommand(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int is_internal);
+	void processCommand(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int is_internal, int array_size);
 
 #endif //PRCSS_CMD_H__

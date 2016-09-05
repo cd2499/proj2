@@ -43,22 +43,23 @@
 	
 	int routeCommand(char ** cmd_array, int array_size, int hist_cnt, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, cmd_type * cmd){
 	
-	//started commenting out here	
-		//printf("new pipe count is %d and new redirect count is %d\n", *pipe_cnt, *redirect_cnt);
-		//printf("cmd---------->%d\n",*cmd);
-		printf("in route cmd_array[0] passed is %s\n", cmd_array[0]);
+		//printf("in route cmd_array[0] passed is %s\n", cmd_array[0]);
 		if ( ((cmd_array[0][0]) == '!') || (strcmp(cmd_array[0], "hist") == 0) ){	
 			*cmd = hist_cmd;
 			return 1;}
 		
 		else if ( (strcmp(cmd_array[0], "pwd") == 0) ){
-			*cmd = dir_cmd;
+			*cmd = dir_pwd_cmd;
 			return 1;}
-			//executeInternal(usercmd, cmd_array, array_size, 0); 	//	printf("%s\n",&(*cmd_array[0][0]))                                          				
+		
 		else if ( (strcmp(cmd_array[0], "cd") == 0) ){
-			*cmd = dir_cmd;
+			*cmd = dir_cd_cmd;
 			return 1;}
-			//executeInternal(usercmd, cmd_array, array_size, 1);
+
+		else if ( (strcmp(cmd_array[0], "exit") == 0) ){
+			*cmd = dir_exit_cmd;
+			return 1;}
+
 //		if (redirect_cnt > 0)	
 //			executeIORedirect(usercmd, cmd_array, array_size, redirect_cnt_val, redirect_idx);
 //	
@@ -98,8 +99,8 @@
 		memset(cmd_array, 0, sizeof (*cmd_array));
 		}
 
-	void processCommand(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int is_internal){
+	void processCommand(cmd_type * cmd, int hist_cnt, char ** cmd_array, int * pipe_cnt, int * redirect_cnt, int * redirect_idx, int is_internal, int array_size){
 		if (is_internal)
-			exec_internal(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx); 
+			exec_internal(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, array_size); 
 		else
 			printf("looks like its external\n");}

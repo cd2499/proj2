@@ -49,7 +49,7 @@
          		
 			is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
 			
-			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal); 
+			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal, array_size); 
          		
 			printf("cmd----->%d\n", *cmd);
 			free(user_cmd);		

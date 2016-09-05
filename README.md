@@ -1,2 +1,2 @@
 # proj2
-proj 2 from CSC4420 
+proj 2 shell
