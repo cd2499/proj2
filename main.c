@@ -13,6 +13,7 @@
 	#include <sys/wait.h>
 	#include <sys/stat.h>
 	#include <fcntl.h>
+	#include "./cmd_cleanup.h"	
 	#include "./cmd_type.h"
 	#include "./process_cmd.h"
 	#include "./internal_cmd.h"
@@ -52,12 +53,9 @@
 			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal, array_size); 
          		
 			printf("cmd----->%d\n", *cmd);
-			free(user_cmd);		
+	
+			cmd_cleanup(user_cmd, pipe_cnt, redirect_cnt, redirect_idx);	
         		
-			*pipe_cnt = 0;
-			*redirect_cnt = 0;
-			*redirect_idx = 0; 
-         		
 			getShellPrompt(shellprompt,++hist_cnt);}
 
 		return 0;}
