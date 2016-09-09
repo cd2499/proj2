@@ -16,6 +16,7 @@
 		sprintf(shellprompt, "< %d %s@%s:>", hist_cnt, user, machine);}
 
 
+	
 	int parseCommand(char * usercmd_, char ** cmd_array, char * delim, int * pipe_cnt, int * redirect_cnt, int * redirect_idx){
 		int array_size = 0;	
 		char usercmd[1000];
@@ -27,7 +28,7 @@
 
 		while(parsecmd != NULL)	{
 			cmd_array[array_size++] = parsecmd;
-		//	printf("arraysize %d and val %s\n", array_size, parsecmd);
+			printf("arraysize %d and val %s\n", array_size, parsecmd);
 			if ( (strcmp(parsecmd,">") == 0) ||  (strcmp(parsecmd, "<") == 0) ){	
 				redirect_idx[(*redirect_cnt)] = array_size-1;	
 				(*redirect_cnt)++;}

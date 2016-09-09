@@ -2,6 +2,7 @@
 	-  Date: 2016-08-21 		     -
 	-  Project: shell 		    */
 
+	#include <errno.h>
 	#include <stdbool.h>
 	#include <stdio.h>
 	#include <stdlib.h>
