@@ -28,7 +28,7 @@
 
 		while(parsecmd != NULL)	{
 			cmd_array[array_size++] = parsecmd;
-			printf("arraysize %d and val %s\n", array_size, parsecmd);
+	//		printf("arraysize %d and val %s\n", array_size, parsecmd);
 			if ( (strcmp(parsecmd,">") == 0) ||  (strcmp(parsecmd, "<") == 0) ){	
 				redirect_idx[(*redirect_cnt)] = array_size-1;	
 				(*redirect_cnt)++;}

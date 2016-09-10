@@ -62,13 +62,12 @@
 			if(array_size != 2)
 				write(STDERR_FILENO, "Error: Expecting two arguments for changing directory\n", 128);
 			else{
+				char * cd_cmd = malloc(400);
 
-				if (strcmp(cmd_array[1],"../") == 0)
-					printf("did this comet rhough?\n");
-				printf("in dir_cd_cmd--->|%s|\n", cmd_array[1]);
-				if ( (chdir(cmd_array[1])) != 0)
-{    printf("failed to change dire %d - %s\n", errno, strerror(errno));			
-		write(STDERR_FILENO, "Error: failed to change directory\n", 400);}}}
+				strcpy(cd_cmd, cmd_array[1]);
+
+				if ( (chdir(cd_cmd)) != 0)
+    					printf("failed to change dire %d - %s\n", errno, strerror(errno));			
 		
 		else if (*cmd == dir_exit_cmd)
 				exit(0);}
