@@ -11,37 +11,53 @@
 		*pipe_cnt = 0;
 		*redirect_cnt = 0;
 		*redirect_idx = 0;
+	
+				
 			
-			
-		if (cmd_array[0][1] == '-')
-		{				
+		if (cmd_array[0][1] == '-'){				
 			char * a[400];
 			int array_size;
 			int is_internal = 0;
 			parseCommand(cmd_array[0], a, "-", NULL, NULL, NULL); //gmo make sure adding null doesnt cause an issue
-			cmd_array_new[0] =  the_list[hist_cnt - (atoi(a[1])+1)]->line;
 			
-			array_size = parseCommand(cmd_array_new[0], cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
+			if ((atoi(a[1]) + 1) > hist_cnt)
+				printf("Exception: you can only backtrack at most %d commands\n", hist_cnt);
+			else{
+				cmd_array_new[0] =  the_list[hist_cnt - (atoi(a[1])+1)]->line;
+				printf("%s\n", cmd_array_new[0]);
+			
+				array_size = parseCommand(cmd_array_new[0], cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
 
-			is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
+				is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
 				
-			processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal, array_size); 
-		}
-	//	else if(strcmp(cmd_array[0], "hist") == 0)
-//		{	
-//			register int i;
+				processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal, array_size);}}
+		
+		else if(strcmp(cmd_array[0], "hist") == 0){	
+			register int i;
 
-//			printf("%s\n", cmd_array[0]);
-//			if (the_list)
-//				for (i = 0; (the_list[i] && i<atoi(cmd_array[1])) ; i++)
-//					printf ("%d: %s\n", i + history_base, the_list[i]->line);
-//		}
-//		else 
-//		{	
-//			char * a[400]; 
-//			parseCommand(usercmd, a, "!", NULL, NULL, NULL);
-//			commandDirectory(the_list[atoi(a[0])-1]->line, hist_cnt);	
-//		}
+			printf("%s\n", cmd_array[0]);
+			if (the_list)
+				for (i = 0; (the_list[i] && i<atoi(cmd_array[1])) ; i++)
+					printf ("%d: %s\n", i + history_base, the_list[i]->line);}
+		else{	
+			char * a[400];
+			int array_size;
+			int is_internal = 0;
+ 			
+			parseCommand(cmd_array[0], a, "!", NULL, NULL, NULL);
+			
+			if ((atoi(a[0]) < 1) || (hist_cnt < atoi(a[0]))) 
+				printf("Exception: out of range\n");
+			else{
+				cmd_array_new[0] = the_list[atoi(a[0])-1]->line;
+				printf("%s\n", the_list[atoi(a[0])-1]->line);	
+				
+				array_size = parseCommand(cmd_array_new[0], cmd_array, " ", pipe_cnt, redirect_cnt, redirect_idx);
+
+				is_internal = routeCommand(cmd_array, array_size, hist_cnt, pipe_cnt, redirect_cnt, redirect_idx, cmd);
+				
+				processCommand(cmd, hist_cnt, cmd_array, pipe_cnt, redirect_cnt, redirect_idx, is_internal, array_size);}}
+	//		commandDirectory(the_list[atoi(a[0])-1]->line, hist_cnt);	
 	//	free(cmd);  DOESNT LIKE THIS
 }
 
@@ -67,7 +83,7 @@
 				strcpy(cd_cmd, cmd_array[1]);
 
 				if ( (chdir(cd_cmd)) != 0)
-    					printf("failed to change dire %d - %s\n", errno, strerror(errno));			
+    					printf("failed to change dire %d - %s\n", errno, strerror(errno));}}			
 		
 		else if (*cmd == dir_exit_cmd)
 				exit(0);}
